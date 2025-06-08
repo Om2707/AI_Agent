@@ -1,0 +1,7 @@
+{
+    "platform": "Topcoder",
+    "fields": {
+      "title": { "required": true },
+      "overview": { "required": true }
+    }
+  }

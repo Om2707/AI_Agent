@@ -1,22 +1,29 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from app.agent.langflow import graph
+from app.agent.graph import graph
 
 app = FastAPI()
 
-# Define the input model with thread_id
 class ChatInput(BaseModel):
     message: str
     thread_id: str = "default"
 
-# Define the /chat endpoint
 @app.post("/chat")
 async def chat(input: ChatInput):
-    # Prepare the user's message
     user_message = {"role": "user", "content": input.message}
-    # Run the graph with the user's message and thread_id
     config = {"configurable": {"thread_id": input.thread_id}}
     final_state = await graph.ainvoke({"messages": [user_message]}, config=config)
-    # Extract and return the assistant's response
-    assistant_response = final_state["messages"][-1].content
-    return {"response": assistant_response}
+    
+    if final_state.get("is_final"):
+        final_spec = {field: data["value"] for field, data in final_state["field_data"].items()}
+        reasoning_trace = [
+            {
+                "field": field,
+                "source": data["reasoning"],
+                "confidence": data.get("confidence")
+            }
+            for field, data in final_state["field_data"].items()
+        ]
+        final_output = {**final_spec, "reasoning_trace": reasoning_trace}
+        return {"response": final_state["messages"][-1]["content"], "final_spec": final_output}
+    return {"response": final_state["messages"][-1]["content"]}

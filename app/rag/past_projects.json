@@ -1,0 +1,23 @@
+[
+    {
+        "stage": "Ideation",
+        "goal": "task management",
+        "platform": "Topcoder",
+        "title": "Task App",
+        "overview": "A simple app",
+        "timeline": "3 months",
+        "judging_criteria": ["functionality", "usability"],
+        "formatting": "standard"
+    },
+    {
+        "stage": "Planning",
+        "goal": "data analysis",
+        "platform": "Kaggle",
+        "title": "Data Insights",
+        "description": "Analyze dataset",
+        "tags": "machine learning, data science",
+        "timeline": "2 months",
+        "judging_criteria": ["accuracy", "clarity"],
+        "formatting": "kaggle notebook"
+    }
+]
