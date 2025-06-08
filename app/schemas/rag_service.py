@@ -5,7 +5,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http import models
 from sentence_transformers import SentenceTransformer
 import numpy as np
-from app.config.settings import settings
+from app.rag.settings import settings
 
 class RAGService:
     def __init__(self):

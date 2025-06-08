@@ -24,3 +24,4 @@ pandas>=2.0.0
 # Optional: For vision support
 pillow>=10.0.0
 opencv-python>=4.8.0
+langgraph
