@@ -1,6 +1,6 @@
 import json
-from langchain.vectorstores import Qdrant
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import Qdrant
+from langchain_openai import OpenAIEmbeddings
 from langchain.docstore.document import Document
 from pathlib import Path
 
