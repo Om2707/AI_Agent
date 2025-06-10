@@ -3,6 +3,8 @@ from langchain_community.vectorstores import Qdrant
 from langchain_openai import OpenAIEmbeddings
 from langchain.docstore.document import Document
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 def load_past_projects():
     """Load past project specifications from a JSON file."""
